@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/ellnka/gitstats/static/css/main.6f974788.chunk.css",
+    "main.js": "/ellnka/gitstats/static/js/main.5ae2dfcc.chunk.js",
+    "main.js.map": "/ellnka/gitstats/static/js/main.5ae2dfcc.chunk.js.map",
+    "runtime~main.js": "/ellnka/gitstats/static/js/runtime~main.89062d7c.js",
+    "runtime~main.js.map": "/ellnka/gitstats/static/js/runtime~main.89062d7c.js.map",
+    "static/css/2.266e55a5.chunk.css": "/ellnka/gitstats/static/css/2.266e55a5.chunk.css",
+    "static/js/2.20c8a0cd.chunk.js": "/ellnka/gitstats/static/js/2.20c8a0cd.chunk.js",
+    "static/js/2.20c8a0cd.chunk.js.map": "/ellnka/gitstats/static/js/2.20c8a0cd.chunk.js.map",
+    "index.html": "/ellnka/gitstats/index.html",
+    "precache-manifest.24a424ea58d17fa9c7a3e411450b2f91.js": "/ellnka/gitstats/precache-manifest.24a424ea58d17fa9c7a3e411450b2f91.js",
+    "service-worker.js": "/ellnka/gitstats/service-worker.js",
+    "static/css/2.266e55a5.chunk.css.map": "/ellnka/gitstats/static/css/2.266e55a5.chunk.css.map",
+    "static/css/main.6f974788.chunk.css.map": "/ellnka/gitstats/static/css/main.6f974788.chunk.css.map"
+  }
+}
