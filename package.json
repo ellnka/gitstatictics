@@ -1,8 +1,8 @@
 {
   "name": "gitstats",
-  "homepage": "https://github.com/ellnka/gitstats",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://github.com/ellnka/gitstats",
   "dependencies": {
     "bootstrap": "^4.3.1",
     "react": "^16.8.6",
