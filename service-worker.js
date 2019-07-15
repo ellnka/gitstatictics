@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/ellnka/gitstats/precache-manifest.24a424ea58d17fa9c7a3e411450b2f91.js"
+  "/ellnka/gitstats/precache-manifest.ce91c6df2590666ceecbe433dee3bcc4.js"
 );
 
 self.addEventListener('message', (event) => {
