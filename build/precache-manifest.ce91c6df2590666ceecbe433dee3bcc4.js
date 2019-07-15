@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "0fba8434f859a68f292f06d747c61946",
+    "revision": "e2a7f5eb5a43ebd37000bc4a5e88673f",
     "url": "/ellnka/gitstats/index.html"
   },
   {
-    "revision": "8b7eb11cbbe8f4fb4418",
+    "revision": "959fb8cbe18aa3fdada0",
     "url": "/ellnka/gitstats/static/css/2.266e55a5.chunk.css"
   },
   {
-    "revision": "ae872e292ef88cfd5a41",
+    "revision": "0fcc2848664d8737a9aa",
     "url": "/ellnka/gitstats/static/css/main.6f974788.chunk.css"
   },
   {
-    "revision": "8b7eb11cbbe8f4fb4418",
-    "url": "/ellnka/gitstats/static/js/2.20c8a0cd.chunk.js"
+    "revision": "959fb8cbe18aa3fdada0",
+    "url": "/ellnka/gitstats/static/js/2.5015dd94.chunk.js"
   },
   {
-    "revision": "ae872e292ef88cfd5a41",
-    "url": "/ellnka/gitstats/static/js/main.5ae2dfcc.chunk.js"
+    "revision": "0fcc2848664d8737a9aa",
+    "url": "/ellnka/gitstats/static/js/main.493d4c24.chunk.js"
   },
   {
     "revision": "a86e76fca747beb7cfd2",
