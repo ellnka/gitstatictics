@@ -1,10 +1,8 @@
 'use strict';
 
 import React, {Component} from 'react';
-import Services from './../lib/services';
 import UserProfile from "./userProfile";
 
-const url = "https://api.github.com/search/users";
 
 export default class Search extends Component {
     constructor(props) {
@@ -12,23 +10,21 @@ export default class Search extends Component {
 
         this.state = {
             search: '',
-            user: null
+            username: null
         };
 
 
         this._setSearch = this._setSearch.bind(this);
 
         this.render();
-
-
     }
 
     _setSearch(event) {
         this.setState({search: event.target.value});
     }
 
-    _setUser(obj) {
-        this.setState({user: obj});
+    _setUsername(obj) {
+        this.setState({username: obj});
     }
 
 
@@ -37,7 +33,8 @@ export default class Search extends Component {
             <div>
                 <form onSubmit={this._submitHandler.bind(this)}>
                     <div className='form-group'>
-                        <input name='search' onChange={this._setSearch} autoComplete='off' placeholder='Search...'
+                        <input name='search' onChange={this._setSearch} autoComplete='off'
+                               placeholder='Search username...'
                                className='form-control'/>
                     </div>
                 </form>
@@ -54,40 +51,19 @@ export default class Search extends Component {
         );
     }
 
-    _search() {
-    }
-
-    _pressKeyHandler() {
-    }
-
-
     _submitHandler(event) {
         event.preventDefault();
-        this._setUser(null);
-
+        this._setUsername("");
         const value = this.state.search;
         const searchTerm = value.toLowerCase().trim();
 
-        const requestUrl = url + "?q=" + searchTerm;
-        this._fetchUser(requestUrl);
+        this._setUsername(searchTerm);
     }
 
-    _fetchUser(url) {
-        Services.fetch(url)
-            .then(data => {
-                if (data.total_count) {
-                    let user_url = data.items[0].url;
-                    Services.fetch(user_url)
-                        .then(data => {
-                            this._setUser(data);
-                        });
-                }
-            });
-    }
 
     _userProfile() {
-        if (this.state.user) {
-            return <UserProfile userInfo={this.state.user}/>;
+        if (this.state.username) {
+            return <UserProfile username={this.state.username}/>;
         }
     }
 }
