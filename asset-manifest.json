@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/gitstats/static/css/main.546fac1d.chunk.css",
-    "main.js": "/gitstats/static/js/main.4915f478.chunk.js",
-    "main.js.map": "/gitstats/static/js/main.4915f478.chunk.js.map",
+    "main.js": "/gitstats/static/js/main.7c814fcc.chunk.js",
+    "main.js.map": "/gitstats/static/js/main.7c814fcc.chunk.js.map",
     "runtime~main.js": "/gitstats/static/js/runtime~main.c897b6d6.js",
     "runtime~main.js.map": "/gitstats/static/js/runtime~main.c897b6d6.js.map",
     "static/css/2.266e55a5.chunk.css": "/gitstats/static/css/2.266e55a5.chunk.css",
     "static/js/2.af5efa88.chunk.js": "/gitstats/static/js/2.af5efa88.chunk.js",
     "static/js/2.af5efa88.chunk.js.map": "/gitstats/static/js/2.af5efa88.chunk.js.map",
     "index.html": "/gitstats/index.html",
-    "precache-manifest.f48d4fe14de1fcbb398629c447b0540d.js": "/gitstats/precache-manifest.f48d4fe14de1fcbb398629c447b0540d.js",
+    "precache-manifest.c958b34a176dbf2cfdbb7495fbfa138b.js": "/gitstats/precache-manifest.c958b34a176dbf2cfdbb7495fbfa138b.js",
     "service-worker.js": "/gitstats/service-worker.js",
     "static/css/2.266e55a5.chunk.css.map": "/gitstats/static/css/2.266e55a5.chunk.css.map",
     "static/css/main.546fac1d.chunk.css.map": "/gitstats/static/css/main.546fac1d.chunk.css.map"
