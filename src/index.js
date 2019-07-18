@@ -7,12 +7,9 @@ import {BrowserRouter as Router, Route} from 'react-router-dom'
 import * as serviceWorker from './serviceWorker';
 
 import Search from './components/search';
-import UserProfile from './components/userProfile';
-import Stats from './components/stats';
-import Repos from './components/repos';
 
 ReactDOM.render(
-    <Router basename="/gitstats">
+    <Router basename="/">
         <div>
             <Route path="/" component={Search} />
         </div>

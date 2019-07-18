@@ -35,6 +35,8 @@ export default class UserInfo extends Component {
     }
 
     _formatDate(strDate) {
+        if(!strDate) return;
+
         let date = new Date(strDate);
         return date.toLocaleDateString();
     }
