@@ -12,7 +12,7 @@ import Stats from './components/stats';
 import Repos from './components/repos';
 
 ReactDOM.render(
-    <Router basename="/">
+    <Router basename="/gitstats">
         <div>
             <Route path="/" component={Search} />
         </div>
