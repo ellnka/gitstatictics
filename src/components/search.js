@@ -55,10 +55,7 @@ export default class Search extends Component {
         event.preventDefault();
 
         if (!this.$search) return;
-
-        this.props.history.push("/");
-        this._setUsername("");
-
+        
         const value = this.$search.value;
         const searchTerm = value.toLowerCase().trim();
 
