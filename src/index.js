@@ -9,7 +9,7 @@ import * as serviceWorker from './serviceWorker';
 import Search from './components/search';
 
 ReactDOM.render(
-    <Router basename="/">
+    <Router basename="/gitstats">
         <div>
             <Route path="/" component={Search} />
         </div>
