@@ -1,5 +1,3 @@
-'use strict';
-
 import React, {Component} from 'react';
 
 export default class Repos extends Component {
@@ -10,21 +8,17 @@ export default class Repos extends Component {
             repos: props.repos
         };
 
-        this._repos = props.repos;
 
         this.render();
 
     }
 
-    _setRepos(obj) {
-        this.setState({repos: obj});
-    }
-
-
     render() {
-        console.log(this._repos);
-        const listRepos = this._repos.map((repo) =>
-            <li className="list-group-item">{repo.name}</li>
+        if(!this.state.repos) return;
+
+        const repos = Object.values(this.state.repos);
+        const listRepos = repos.map((repo, i) =>
+            <li className="list-group-item" key={i}>{repo.name}</li>
         );
         return (
             <div>

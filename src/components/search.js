@@ -1,6 +1,6 @@
-'use strict';
-
 import React, {Component} from 'react';
+import {Route} from 'react-router';
+
 import UserProfile from "./userProfile";
 
 
@@ -9,33 +9,39 @@ export default class Search extends Component {
         super(props);
 
         this.state = {
-            search: '',
-            username: null
+            username: ""
         };
-
-
-        this._setSearch = this._setSearch.bind(this);
+        this.$search = null;
 
         this.render();
     }
 
+    render() {
+        return (
+            <div className='container' role='main'>
+
+                {this._searchInput()}
+
+                <Route path='/userProfile/:username' component={UserProfile} />
+
+            </div>
+        );
+    }
+
+    _setUsername(value) {
+        this.setState({username: value});
+    }
+
     _setSearch(event) {
-        this.setState({search: event.target.value});
+        this.$search = event.target;
     }
-
-    _setUsername(obj) {
-        this.setState({username: obj});
-    }
-
 
     _searchInput() {
         return (
             <div>
                 <form onSubmit={this._submitHandler.bind(this)}>
                     <div className='form-group'>
-                        <input name='search' onChange={this._setSearch} autoComplete='off'
-                               placeholder='Search username...'
-                               className='form-control'/>
+                        <input name='search' onChange={this._setSearch.bind(this)} autoComplete='off' placeholder='Search username...' className='form-control' />
                     </div>
                 </form>
                 {this._userProfile()}
@@ -43,27 +49,28 @@ export default class Search extends Component {
         );
     }
 
-    render() {
-        return (
-            <div className='container' role='main'>
-                {this._searchInput()}
-            </div>
-        );
-    }
+
 
     _submitHandler(event) {
         event.preventDefault();
+
+        if (!this.$search) return;
+
+        this.props.history.push("/");
         this._setUsername("");
-        const value = this.state.search;
+
+        const value = this.$search.value;
         const searchTerm = value.toLowerCase().trim();
 
         this._setUsername(searchTerm);
+        this.props.history.push("/userProfile/" + searchTerm);
     }
 
 
     _userProfile() {
-        if (this.state.username) {
-            return <UserProfile username={this.state.username}/>;
-        }
+        if (!this.state.username) return;
+
+        return <UserProfile username={this.state.username} history={this.props.history} />;
     }
+
 }
