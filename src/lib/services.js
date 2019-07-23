@@ -3,12 +3,12 @@ export default class Services {
 
     static fetch(url) {
         let username = "ellnka";
-        let password = "m0t0r0lka";
+        let password = "password123";
         //let url = `https://httpbin.org/basic-auth/${username}/${password}`
         let authString = `${username}:${password}`;
         let headers = new Headers();
         headers.set("Content-Type", "application/json");
-        headers.set("Authorization", "Basic " + btoa(authString));
+        //headers.set("Authorization", "Basic " + btoa(authString));
         return fetch(url, { method: "GET", headers: headers }).then(response =>
             response.json()
         );
