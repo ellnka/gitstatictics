@@ -12,10 +12,16 @@ code {
     monospace;
 }
 
-form {
+button {
+  margin-left: 10px;
+}
+
+form, .container, .block {
   margin: 20px;
 }
 
 img {
   margin: 20px;
+  width: 100px;
+  height: 100px;
 }
