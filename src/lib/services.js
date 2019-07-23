@@ -2,19 +2,25 @@ export default class Services {
     constructor() {}
 
     static fetch(url) {
-        return fetch(url)
-            .then((response) => response.json())
+        let username = "ellnka";
+        let password = "m0t0r0lka";
+        //let url = `https://httpbin.org/basic-auth/${username}/${password}`
+        let authString = `${username}:${password}`;
+        let headers = new Headers();
+        headers.set("Content-Type", "application/json");
+        headers.set("Authorization", "Basic " + btoa(authString));
+        return fetch(url, { method: "GET", headers: headers }).then(response =>
+            response.json()
+        );
     }
 
     static update(url, payload) {
         return fetch(url, {
-            method: 'PUT',
+            method: "PUT",
             headers: {
-                'Content-Type': 'application/json'
+                "Content-Type": "application/json"
             },
-            body: JSON.stringify(payload),
-        })
+            body: JSON.stringify(payload)
+        });
     }
-
-
 }
