@@ -1,12 +1,17 @@
 import React, { Component } from "react";
-import { Route, Link } from "react-router-dom";
 
 import UserProfile from "../userProfile/userProfile";
 
 export default class Search extends Component {
-    state = {
-        username: ""
-    };
+    constructor(props) {
+        super(props);
+
+        this.$searchInput = null;
+        this.state = {
+            username: ""
+        };
+
+    }
 
 
     render() {
@@ -22,27 +27,18 @@ export default class Search extends Component {
                             className="form-control"
                         />
                     </div>
-                    <Link
-                        to={{
-                            pathname: `/userProfile/${this.state.username}`,
-                            state: {
-                                username: this.state.username
-                            }
-                        }}
-                    >
-                        <button className="btn btn-primary" type="button">
+
+                        <button
+                            className="btn btn-primary"
+                            type="button"
+                            onClick={this._runSearchHandler.bind(this)}
+                        >
                             Search
                         </button>
-                    </Link>
                 </div>
 
                 <div className="block">
-                    <Route
-                        path="/userProfile/:username"
-                        render={props => (
-                            <UserProfile {...props} key={this.props.location.key} />
-                        )}
-                    />
+                    {this._renderUserProfile()}
                 </div>
             </div>
         );
@@ -55,7 +51,22 @@ export default class Search extends Component {
     }
 
     _setSearch(event) {
-        const value = event.target.value;
+        if (this.$searchInput) return;
+
+        this.$searchInput = event.target;
+
+    }
+
+    _renderUserProfile() {
+        if (!this.state.username) return;
+
+        return <div><UserProfile username = {this.state.username} /></div>;
+    }
+
+    _runSearchHandler() {
+        if (!this.$searchInput) return;
+
+        const value = this.$searchInput.value;
         this._setUsername(value);
     }
 }

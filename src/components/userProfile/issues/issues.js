@@ -2,12 +2,16 @@ import React, { Component } from "react";
 import Services from "../../../lib/services";
 
 export default class Issues extends Component {
-    state = {
-        issues: []
-    };
 
-    componentDidMount() {
-        this._fetchIssues(this.props.repos);
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            issues: []
+        };
+
+        this._fetchIssues(props.repos);
     }
 
     render() {
@@ -28,7 +32,7 @@ export default class Issues extends Component {
     _renderIssues(repoIssues) {
         if (!repoIssues) return;
 
-        const repoName = repoIssues.repo;
+        const repoName = repoIssues.repoName;
         const issues = repoIssues.issues;
 
         const listIssues = issues.map((issue, i) => (
@@ -64,7 +68,7 @@ export default class Issues extends Component {
 
                 let issues = this.state.issues;
                 let issue = {
-                    repo: repo.name,
+                    repoName: repo.name,
                     issues: data.map(issue => issue.title)
                 };
                 issues.push(issue);

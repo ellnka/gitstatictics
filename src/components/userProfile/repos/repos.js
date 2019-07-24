@@ -1,25 +1,15 @@
 import React, { Component } from "react";
 
 export default class Repos extends Component {
-    state = {
-        repos: null
-    };
 
-    componentDidMount() {
-        let repos = this.props.repos || this.state.repos;
-        this._setRepos(repos);
-    }
+    constructor(props) {
+        super(props);
 
-    _setRepos(obj) {
-        this.setState({ repos: obj });
+        this.repos = props.repos;
     }
 
     render() {
-        const repos = this.props.repos || this.state.repos;
-
-        if (!repos) return <div>Repositories not found</div>;
-
-        const reposArr = Object.values(repos);
+        const reposArr = Object.values(this.repos);
         const listRepos = reposArr.map((repo, i) => (
             <li className="list-group-item" key={i}>
                 {repo.name}

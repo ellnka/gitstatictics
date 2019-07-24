@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import Utils from "../../../lib/utils";
 
 export default class UserInfo extends Component {
-    state = {
-        info: ""
-    };
 
-    componentWillReceiveProps(props) {
-        this._setInfo(props.info);
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            info: props.info
+        };
     }
 
     render() {
@@ -32,7 +33,4 @@ export default class UserInfo extends Component {
         );
     }
 
-    _setInfo(obj) {
-        this.setState({ info: { ...obj } });
-    }
 }

@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import { Route, Link } from "react-router-dom";
+import React, {Component} from "react";
 
 import Services from "../../lib/services";
 import Repos from "./repos/repos";
@@ -11,30 +10,33 @@ import Utils from "../../lib/utils";
 const url = "https://api.github.com";
 
 export default class UserProfile extends Component {
-    _tabs = ["stats", "repos", "issues"];
-    state = {
-        username: "",
-        userInfo: null,
-        repos: null,
-        error: false
-    };
+
+    constructor(props) {
+        super(props);
+
+        this._tabs = ["stats", "repos", "issues"];
+        this.state = {
+            activeTab: this._tabs[0],
+            userInfo: null,
+            repos: null,
+            error: false
+        };
+        this.username = props.username;
+    }
+
+    componentDidMount() {
+        if (!this.username) return;
+        this._requestUser(this.username);
+    }
 
     render() {
         if (this.state.error) {
             return Utils.userNotFoundDiv();
         }
-        if (this.state.username && this.state.userInfo) {
+        if (this.username && this.state.userInfo) {
             return <div>{this._renderUserProfile()}</div>;
         }
         return <div> {Utils.loadingDiv()}</div>;
-    }
-
-    componentDidMount() {
-        const { username } = this.props.match.params;
-
-        this._setUsername(username);
-        this._setUserInfo(null);
-        this._requestUser(username);
     }
 
     _renderUserProfile() {
@@ -42,39 +44,39 @@ export default class UserProfile extends Component {
             <div id="coder" className="card">
                 {this._renderUserInfo()}
 
-                <ul className="nav nav-tabs">
+                <ul className="nav nav-tabs" onClick={this._tabClickHandler.bind(this)}>
                     <li className="nav-item">
-                        <Link
-                            to={{ pathname: `/userProfile/${this.state.username}` }}
+                        <a
+                            href="#"
                             className="nav-link"
                             id={this._tabs[0]}
                         >
                             Statistics
-                        </Link>
+                        </a>
                     </li>
                     <li className="nav-item">
-                        <Link
-                            to={{ pathname: `/userProfile/${this.state.username}/repos` }}
+                        <a
+                            href="#"
                             className="nav-link"
                             id={this._tabs[1]}
                         >
                             Repositories
-                        </Link>
+                        </a>
                     </li>
                     <li className="nav-item">
-                        <Link
-                            to={{ pathname: `/userProfile/${this.state.username}/issues` }}
+                        <a
+                            href="#"
                             className="nav-link"
                             id={this._tabs[2]}
                         >
                             Issues
-                        </Link>
+                        </a>
                     </li>
                 </ul>
 
-                {this._renderRepos()}
-
                 {this._renderStats()}
+
+                {this._renderRepos()}
 
                 {this._renderIssues()}
             </div>
@@ -82,48 +84,26 @@ export default class UserProfile extends Component {
     }
 
     _renderUserInfo() {
-        if (this.state.userInfo && this.state.username) {
-            return <UserInfo info={this.state.userInfo} />;
+        if (this.state.userInfo) {
+            return <div><UserInfo info={this.state.userInfo}/></div>;
         }
     }
 
     _renderStats() {
-        if (
-            (this.state.userInfo || this.state.repos) &&
-                this._getActiveTab() === this._tabs[0]
-        ) {
-            return (
-                <div>
-                    <StatsUser data={this.state.userInfo} />
-                </div>
-            );
+        if (this.state.userInfo && this.state.activeTab === this._tabs[0]) {
+            return <div><StatsUser data={this.state.userInfo}/></div>;
         }
     }
 
     _renderRepos() {
-        if (this.state.repos && this._getActiveTab() === this._tabs[1]) {
-            console.log("repos tab is active");
-            return (
-                <div>
-                    <Route
-                        path="/userProfile/:username/repos"
-                        render={() => <Repos repos={this.state.repos} />}
-                    />
-                </div>
-            );
+        if (this.state.repos && this.state.activeTab === this._tabs[1]) {
+            return <div><Repos repos={this.state.repos}/></div>;
         }
     }
 
     _renderIssues() {
-        if (this.state.repos && this._getActiveTab() === this._tabs[2]) {
-            return (
-                <div>
-                    <Route
-                        path="/userProfile/:username/issues"
-                        render={() => <Issues repos={this.state.repos} />}
-                    />
-                </div>
-            );
+        if (this.state.repos && this.state.activeTab === this._tabs[2]) {
+            return <div><Issues repos={this.state.repos}/></div>;
         }
     }
 
@@ -134,9 +114,11 @@ export default class UserProfile extends Component {
 
     _fetchUser(url) {
         Services.fetch(url).then(data => {
+            console.log(data);
             if (data.id) {
                 this._setError(false);
                 this._setUserInfo(data);
+                this._setActiveTab(this._tabs[0]);
                 this._fetchRepos(data.repos_url);
             } else {
                 this._setError(true);
@@ -153,26 +135,31 @@ export default class UserProfile extends Component {
     }
 
     _setRepos(obj) {
-        this.setState({ repos: { ...obj } });
+        this.setState({repos: {...obj}});
     }
 
     _setUsername(value) {
-        this.setState({ username: value });
+        this.setState({username: value});
     }
 
     _setUserInfo(obj) {
-        this.setState({ userInfo: { ...obj } });
+        this.setState({userInfo: {...obj}});
     }
 
     _setError(value) {
-        this.setState({ error: value });
+        this.setState({error: value});
     }
 
-    _getActiveTab() {
-        const path = this.props.location.pathname;
+    _setActiveTab(value) {
+        this.setState({activeTab: value});
+    }
 
-        if (path.includes("/repos")) return this._tabs[1];
-        if (path.includes("/issues")) return this._tabs[2];
-        return this._tabs[0];
+
+    _tabClickHandler(event) {
+        const $el = event.target;
+        console.log($el);
+        if ($el.tagName !== "A") return;
+        console.log($el.id);
+        this._setActiveTab($el.id);
     }
 }
